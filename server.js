@@ -10,7 +10,7 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index.ejs", { weather: null, error: null });
 });
 
 app.post("/", async (req, res) => {
@@ -20,15 +20,15 @@ app.post("/", async (req, res) => {
     .then((response) => response.json())
     .then((response) => (data = response))
     .then((data) =>
-      res.render("index", {
-        weather: `It's ${data.main.temp} degress in ${data.name}!`,
+      res.render("index.ejs", {
+        weather: `It's ${Math.round(data.main.temp)} degress in ${data.name}!`,
         error: null,
       })
     )
     .catch((err) =>
-      res.render("index", {
+      res.render("index.ejs", {
         weather: null,
-        error: "Error, please try again!",
+        error: err,
       })
     );
 });

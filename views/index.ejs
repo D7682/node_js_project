@@ -23,13 +23,11 @@
           />
           <input type="submit" class="ghost-button" value="Get Weather" />
         </form>
+
+        <% if(weather !== null){ %>
+        <p><%= weather %></p>
+        <% } %>
       </fieldset>
     </div>
-
-    <% if(weather !== null){ %>
-    <p><%= weather %></p>
-    <% } %> <% if(error !== null){ %>
-    <p><%= error %></p>
-    <%} %>
   </body>
 </html>
